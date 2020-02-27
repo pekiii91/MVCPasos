@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LicnaDokumentaPasosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblGradjanin">
+    <Key>
+      <PropertyRef Name="GradjaninID" />
+    </Key>
+    <Property Name="GradjaninID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JMBG" Type="Int32" Nullable="false" />
+    <Property Name="Pol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIzdavanja" Type="DateTime" Precision="0" />
+    <Property Name="DatumRodjenja" Type="DateTime" Precision="0" />
+    <Property Name="MestoRodjenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DrzavaRodjenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prebivaliste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KodDrzave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaloletnoLice" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblMaloletnoLouse" Relationship="Self.FK_tblGradjanin_tblMaloletnoLice" FromRole="tblGradjanin" ToRole="tblMaloletnoLice" />
+    <NavigationProperty Name="tblPasos" Relationship="Self.FK_tblPasos_tblGradjanin" FromRole="tblGradjanin" ToRole="tblPasos" />
+  </EntityType>
+  <EntityType Name="tblInformacijeOPasosu">
+    <Key>
+      <PropertyRef Name="InformacijeOPasosuID" />
+    </Key>
+    <Property Name="InformacijeOPasosuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="Int32" Nullable="false" />
+    <Property Name="IzdavanjePasosa" Type="Int32" Nullable="false" />
+    <Property Name="ProduzetakPasosa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblIzdavanjePasosa" Relationship="Self.FK_tblInformacijeOPasosu_tblIzdavanjePasosa" FromRole="tblInformacijeOPasosu" ToRole="tblIzdavanjePasosa" />
+    <NavigationProperty Name="tblProduzetakPasosa" Relationship="Self.FK_tblInformacijeOPasosu_tblProduzetakPasosa" FromRole="tblInformacijeOPasosu" ToRole="tblProduzetakPasosa" />
+    <NavigationProperty Name="tblPasos" Relationship="Self.FK_tblPasos_tblInformacijeOPasosu" FromRole="tblInformacijeOPasosu" ToRole="tblPasos" />
+  </EntityType>
+  <EntityType Name="tblIzdavanjePasosa">
+    <Key>
+      <PropertyRef Name="IzdavanjePasosaID" />
+    </Key>
+    <Property Name="IzdavanjePasosaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LicnaKarta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplataZaPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblInformacijeOPasosus" Relationship="Self.FK_tblInformacijeOPasosu_tblIzdavanjePasosa" FromRole="tblIzdavanjePasosa" ToRole="tblInformacijeOPasosu" />
+  </EntityType>
+  <EntityType Name="tblIzgubljenPaso">
+    <Key>
+      <PropertyRef Name="IzgubljenPasosID" />
+    </Key>
+    <Property Name="IzgubljenPasosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrijavaNestanka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NevazecaIsprava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VadiNoviPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblPasos" Relationship="Self.FK_tblPasos_tblIzgubljenPasos" FromRole="tblIzgubljenPasos" ToRole="tblPasos" />
+  </EntityType>
+  <EntityType Name="tblKorisnik">
+    <Key>
+      <PropertyRef Name="KorsinikID" />
+    </Key>
+    <Property Name="KorsinikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lozinka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pasos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblPaso" Relationship="Self.FK_tblKorisnik_tblPasos" FromRole="tblKorisnik" ToRole="tblPasos" />
+  </EntityType>
+  <EntityType Name="tblMaloletnoLouse">
+    <Key>
+      <PropertyRef Name="MaloletnoLiceID" />
+    </Key>
+    <Property Name="MaloletnoLiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplaceneNaknade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaglasnostRoditelja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblGradjanins" Relationship="Self.FK_tblGradjanin_tblMaloletnoLice" FromRole="tblMaloletnoLice" ToRole="tblGradjanin" />
+    <NavigationProperty Name="tblPasos" Relationship="Self.FK_tblPasos_tblMaloletnoLice" FromRole="tblMaloletnoLice" ToRole="tblPasos" />
+  </EntityType>
+  <EntityType Name="tblPaso">
+    <Key>
+      <PropertyRef Name="PasosID" />
+    </Key>
+    <Property Name="PasosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IzdajePU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InformacijeOPasosu" Type="Int32" Nullable="false" />
+    <Property Name="Uplata" Type="Int32" Nullable="false" />
+    <Property Name="Gradjanin" Type="Int32" Nullable="false" />
+    <Property Name="MaloletnoLice" Type="Int32" Nullable="false" />
+    <Property Name="IzgubljenPasos" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblGradjanin" Relationship="Self.FK_tblPasos_tblGradjanin" FromRole="tblPasos" ToRole="tblGradjanin" />
+    <NavigationProperty Name="tblInformacijeOPasosu" Relationship="Self.FK_tblPasos_tblInformacijeOPasosu" FromRole="tblPasos" ToRole="tblInformacijeOPasosu" />
+    <NavigationProperty Name="tblIzgubljenPaso" Relationship="Self.FK_tblPasos_tblIzgubljenPasos" FromRole="tblPasos" ToRole="tblIzgubljenPasos" />
+    <NavigationProperty Name="tblKorisniks" Relationship="Self.FK_tblKorisnik_tblPasos" FromRole="tblPasos" ToRole="tblKorisnik" />
+    <NavigationProperty Name="tblMaloletnoLouse" Relationship="Self.FK_tblPasos_tblMaloletnoLice" FromRole="tblPasos" ToRole="tblMaloletnoLice" />
+    <NavigationProperty Name="tblUplata" Relationship="Self.FK_tblPasos_tblUplata" FromRole="tblPasos" ToRole="tblUplata" />
+  </EntityType>
+  <EntityType Name="tblProduzetakPasosa">
+    <Key>
+      <PropertyRef Name="ProduzetekPasosaID" />
+    </Key>
+    <Property Name="ProduzetekPasosaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LicnaKarta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StariPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TroskoviUplate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblInformacijeOPasosus" Relationship="Self.FK_tblInformacijeOPasosu_tblProduzetakPasosa" FromRole="tblProduzetakPasosa" ToRole="tblInformacijeOPasosu" />
+  </EntityType>
+  <EntityType Name="tblUplata">
+    <Key>
+      <PropertyRef Name="UplataID" />
+    </Key>
+    <Property Name="UplataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ObrzacPutneIsprave" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="AdministrativnaTaksa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="tblPasos" Relationship="Self.FK_tblPasos_tblUplata" FromRole="tblUplata" ToRole="tblPasos" />
+  </EntityType>
+  <EntityType Name="vwGradjanin">
+    <Key>
+      <PropertyRef Name="GradjaninID" />
+      <PropertyRef Name="JMBG" />
+      <PropertyRef Name="Expr2" />
+      <PropertyRef Name="Expr5" />
+      <PropertyRef Name="MaloletnoLiceID" />
+      <PropertyRef Name="Expr14" />
+    </Key>
+    <Property Name="GradjaninID" Type="Int32" Nullable="false" />
+    <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JMBG" Type="Int32" Nullable="false" />
+    <Property Name="Pol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIzdavanja" Type="DateTime" Precision="0" />
+    <Property Name="DatumRodjenja" Type="DateTime" Precision="0" />
+    <Property Name="MestoRodjenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DrzavaRodjenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prebivaliste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KodDrzave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaloletnoLice" Type="Int32" />
+    <Property Name="Expr1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr2" Type="Int32" Nullable="false" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr5" Type="Int32" Nullable="false" />
+    <Property Name="Expr6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr7" Type="DateTime" Precision="0" />
+    <Property Name="Expr8" Type="DateTime" Precision="0" />
+    <Property Name="Expr9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr13" Type="Int32" />
+    <Property Name="MaloletnoLiceID" Type="Int32" Nullable="false" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplaceneNaknade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaglasnostRoditelja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr14" Type="Int32" Nullable="false" />
+    <Property Name="Expr15" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr16" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr17" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr18" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr19" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwIgubljenPaso">
+    <Key>
+      <PropertyRef Name="IzgubljenPasosID" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="IzgubljenPasosID" Type="Int32" Nullable="false" />
+    <Property Name="PrijavaNestanka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NevazecaIsprava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VadiNoviPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwInformacijeOPasosu">
+    <Key>
+      <PropertyRef Name="InformacijeOPasosuID" />
+      <PropertyRef Name="Telefon" />
+      <PropertyRef Name="IzdavanjePasosa" />
+      <PropertyRef Name="ProduzetakPasosa" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="Expr3" />
+      <PropertyRef Name="Expr4" />
+      <PropertyRef Name="Expr5" />
+      <PropertyRef Name="IzdavanjePasosaID" />
+      <PropertyRef Name="Expr6" />
+      <PropertyRef Name="Expr13" />
+    </Key>
+    <Property Name="InformacijeOPasosuID" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="Int32" Nullable="false" />
+    <Property Name="IzdavanjePasosa" Type="Int32" Nullable="false" />
+    <Property Name="ProduzetakPasosa" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="Int32" Nullable="false" />
+    <Property Name="Expr4" Type="Int32" Nullable="false" />
+    <Property Name="Expr5" Type="Int32" Nullable="false" />
+    <Property Name="IzdavanjePasosaID" Type="Int32" Nullable="false" />
+    <Property Name="LicnaKarta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplataZaPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr6" Type="Int32" Nullable="false" />
+    <Property Name="Expr7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr8" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr10" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr11" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr13" Type="Int32" Nullable="false" />
+    <Property Name="Expr12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr14" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwIzdavanjePasosa">
+    <Key>
+      <PropertyRef Name="IzdavanjePasosaID" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="IzdavanjePasosaID" Type="Int32" Nullable="false" />
+    <Property Name="LicnaKarta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplataZaPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwKorisnik">
+    <Key>
+      <PropertyRef Name="KorsinikID" />
+      <PropertyRef Name="Pasos" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="Expr4" />
+      <PropertyRef Name="Expr5" />
+      <PropertyRef Name="Expr8" />
+      <PropertyRef Name="Expr10" />
+      <PropertyRef Name="Expr11" />
+      <PropertyRef Name="Expr12" />
+      <PropertyRef Name="Expr13" />
+      <PropertyRef Name="Expr14" />
+    </Key>
+    <Property Name="KorsinikID" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lozinka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pasos" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="Int32" Nullable="false" />
+    <Property Name="Expr5" Type="Int32" Nullable="false" />
+    <Property Name="Expr6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr7" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr8" Type="Int32" Nullable="false" />
+    <Property Name="Expr10" Type="Int32" Nullable="false" />
+    <Property Name="Expr11" Type="Int32" Nullable="false" />
+    <Property Name="Expr12" Type="Int32" Nullable="false" />
+    <Property Name="Expr13" Type="Int32" Nullable="false" />
+    <Property Name="Expr14" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vwMaloletnoLouse">
+    <Key>
+      <PropertyRef Name="MaloletnoLiceID" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="MaloletnoLiceID" Type="Int32" Nullable="false" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplaceneNaknade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaglasnostRoditelja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr6" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwPaso">
+    <Key>
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="Expr4" />
+      <PropertyRef Name="Expr6" />
+      <PropertyRef Name="Expr7" />
+      <PropertyRef Name="PasosID" />
+      <PropertyRef Name="Telefon" />
+      <PropertyRef Name="InformacijeOPasosu" />
+      <PropertyRef Name="Uplata" />
+      <PropertyRef Name="Gradjanin" />
+      <PropertyRef Name="MaloletnoLice" />
+      <PropertyRef Name="IzgubljenPasos" />
+      <PropertyRef Name="Expr8" />
+      <PropertyRef Name="Expr9" />
+      <PropertyRef Name="Expr10" />
+      <PropertyRef Name="GradjaninID" />
+      <PropertyRef Name="JMBG" />
+      <PropertyRef Name="IzgubljenPasosID" />
+      <PropertyRef Name="Expr11" />
+      <PropertyRef Name="Expr15" />
+      <PropertyRef Name="UplataID" />
+      <PropertyRef Name="InformacijeOPasosuID" />
+      <PropertyRef Name="IzdavanjePasosa" />
+      <PropertyRef Name="ProduzetakPasosa" />
+      <PropertyRef Name="Expr18" />
+      <PropertyRef Name="MaloletnoLiceID" />
+      <PropertyRef Name="Expr27" />
+      <PropertyRef Name="Expr26" />
+      <PropertyRef Name="ProduzetekPasosaID" />
+      <PropertyRef Name="KorsinikID" />
+      <PropertyRef Name="Pasos" />
+    </Key>
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="Int32" Nullable="false" />
+    <Property Name="Expr5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr6" Type="Int32" Nullable="false" />
+    <Property Name="Expr7" Type="Int32" Nullable="false" />
+    <Property Name="PasosID" Type="Int32" Nullable="false" />
+    <Property Name="IzdajePU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Drzava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InformacijeOPasosu" Type="Int32" Nullable="false" />
+    <Property Name="Uplata" Type="Int32" Nullable="false" />
+    <Property Name="Gradjanin" Type="Int32" Nullable="false" />
+    <Property Name="MaloletnoLice" Type="Int32" Nullable="false" />
+    <Property Name="IzgubljenPasos" Type="Int32" Nullable="false" />
+    <Property Name="Expr8" Type="Int32" Nullable="false" />
+    <Property Name="Expr9" Type="Int32" Nullable="false" />
+    <Property Name="Expr10" Type="Int32" Nullable="false" />
+    <Property Name="GradjaninID" Type="Int32" Nullable="false" />
+    <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JMBG" Type="Int32" Nullable="false" />
+    <Property Name="Pol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DatumIzdavanja" Type="DateTime" Precision="0" />
+    <Property Name="DatumRodjenja" Type="DateTime" Precision="0" />
+    <Property Name="MestoRodjenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DrzavaRodjenja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prebivaliste" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KodDrzave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzgubljenPasosID" Type="Int32" Nullable="false" />
+    <Property Name="PrijavaNestanka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NevazecaIsprava" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VadiNoviPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr11" Type="Int32" Nullable="false" />
+    <Property Name="Expr12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr13" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr14" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr15" Type="Int32" Nullable="false" />
+    <Property Name="UplataID" Type="Int32" Nullable="false" />
+    <Property Name="ObrzacPutneIsprave" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="AdministrativnaTaksa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Expr16" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Expr17" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="InformacijeOPasosuID" Type="Int32" Nullable="false" />
+    <Property Name="IzdavanjePasosa" Type="Int32" Nullable="false" />
+    <Property Name="ProduzetakPasosa" Type="Int32" Nullable="false" />
+    <Property Name="Expr18" Type="Int32" Nullable="false" />
+    <Property Name="Expr19" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr20" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr21" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr22" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr23" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaloletnoLiceID" Type="Int32" Nullable="false" />
+    <Property Name="UverenjeODrzavljanstvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IzvodMaticneKnjigeRodjenih" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UplaceneNaknade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaglasnostRoditelja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotografija" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr27" Type="Int32" Nullable="false" />
+    <Property Name="Expr28" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr24" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr29" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr25" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr26" Type="Int32" Nullable="false" />
+    <Property Name="Expr30" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr31" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProduzetekPasosaID" Type="Int32" Nullable="false" />
+    <Property Name="LicnaKarta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StariPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TroskoviUplate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr32" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KorsinikID" Type="Int32" Nullable="false" />
+    <Property Name="Lozinka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pasos" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vwProduzetakPasosa">
+    <Key>
+      <PropertyRef Name="ProduzetekPasosaID" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="ProduzetekPasosaID" Type="Int32" Nullable="false" />
+    <Property Name="LicnaKarta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StariPasos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TroskoviUplate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Expr4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vwUplata">
+    <Key>
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="UplataID" />
+    </Key>
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="UplataID" Type="Int32" Nullable="false" />
+    <Property Name="ObrzacPutneIsprave" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="AdministrativnaTaksa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Expr2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Expr3" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tblGradjanin_tblMaloletnoLice">
+    <End Role="tblMaloletnoLice" Type="Self.tblMaloletnoLouse" Multiplicity="1" />
+    <End Role="tblGradjanin" Type="Self.tblGradjanin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMaloletnoLice">
+        <PropertyRef Name="MaloletnoLiceID" />
+      </Principal>
+      <Dependent Role="tblGradjanin">
+        <PropertyRef Name="MaloletnoLice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPasos_tblGradjanin">
+    <End Role="tblGradjanin" Type="Self.tblGradjanin" Multiplicity="1" />
+    <End Role="tblPasos" Type="Self.tblPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblGradjanin">
+        <PropertyRef Name="GradjaninID" />
+      </Principal>
+      <Dependent Role="tblPasos">
+        <PropertyRef Name="Gradjanin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblInformacijeOPasosu_tblIzdavanjePasosa">
+    <End Role="tblIzdavanjePasosa" Type="Self.tblIzdavanjePasosa" Multiplicity="1" />
+    <End Role="tblInformacijeOPasosu" Type="Self.tblInformacijeOPasosu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblIzdavanjePasosa">
+        <PropertyRef Name="IzdavanjePasosaID" />
+      </Principal>
+      <Dependent Role="tblInformacijeOPasosu">
+        <PropertyRef Name="IzdavanjePasosa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblInformacijeOPasosu_tblProduzetakPasosa">
+    <End Role="tblProduzetakPasosa" Type="Self.tblProduzetakPasosa" Multiplicity="1" />
+    <End Role="tblInformacijeOPasosu" Type="Self.tblInformacijeOPasosu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProduzetakPasosa">
+        <PropertyRef Name="ProduzetekPasosaID" />
+      </Principal>
+      <Dependent Role="tblInformacijeOPasosu">
+        <PropertyRef Name="ProduzetakPasosa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPasos_tblInformacijeOPasosu">
+    <End Role="tblInformacijeOPasosu" Type="Self.tblInformacijeOPasosu" Multiplicity="1" />
+    <End Role="tblPasos" Type="Self.tblPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblInformacijeOPasosu">
+        <PropertyRef Name="InformacijeOPasosuID" />
+      </Principal>
+      <Dependent Role="tblPasos">
+        <PropertyRef Name="InformacijeOPasosu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPasos_tblIzgubljenPasos">
+    <End Role="tblIzgubljenPasos" Type="Self.tblIzgubljenPaso" Multiplicity="1" />
+    <End Role="tblPasos" Type="Self.tblPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblIzgubljenPasos">
+        <PropertyRef Name="IzgubljenPasosID" />
+      </Principal>
+      <Dependent Role="tblPasos">
+        <PropertyRef Name="IzgubljenPasos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblKorisnik_tblPasos">
+    <End Role="tblPasos" Type="Self.tblPaso" Multiplicity="1" />
+    <End Role="tblKorisnik" Type="Self.tblKorisnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPasos">
+        <PropertyRef Name="PasosID" />
+      </Principal>
+      <Dependent Role="tblKorisnik">
+        <PropertyRef Name="Pasos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPasos_tblMaloletnoLice">
+    <End Role="tblMaloletnoLice" Type="Self.tblMaloletnoLouse" Multiplicity="1" />
+    <End Role="tblPasos" Type="Self.tblPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMaloletnoLice">
+        <PropertyRef Name="MaloletnoLiceID" />
+      </Principal>
+      <Dependent Role="tblPasos">
+        <PropertyRef Name="MaloletnoLice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPasos_tblUplata">
+    <End Role="tblUplata" Type="Self.tblUplata" Multiplicity="1" />
+    <End Role="tblPasos" Type="Self.tblPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUplata">
+        <PropertyRef Name="UplataID" />
+      </Principal>
+      <Dependent Role="tblPasos">
+        <PropertyRef Name="Uplata" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LicnaDokumentaPasosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblGradjanins" EntityType="Self.tblGradjanin" />
+    <EntitySet Name="tblInformacijeOPasosus" EntityType="Self.tblInformacijeOPasosu" />
+    <EntitySet Name="tblIzdavanjePasosas" EntityType="Self.tblIzdavanjePasosa" />
+    <EntitySet Name="tblIzgubljenPasos" EntityType="Self.tblIzgubljenPaso" />
+    <EntitySet Name="tblKorisniks" EntityType="Self.tblKorisnik" />
+    <EntitySet Name="tblMaloletnoLice" EntityType="Self.tblMaloletnoLouse" />
+    <EntitySet Name="tblPasos" EntityType="Self.tblPaso" />
+    <EntitySet Name="tblProduzetakPasosas" EntityType="Self.tblProduzetakPasosa" />
+    <EntitySet Name="tblUplatas" EntityType="Self.tblUplata" />
+    <EntitySet Name="vwGradjanins" EntityType="Self.vwGradjanin" />
+    <EntitySet Name="vwIgubljenPasos" EntityType="Self.vwIgubljenPaso" />
+    <EntitySet Name="vwInformacijeOPasosus" EntityType="Self.vwInformacijeOPasosu" />
+    <EntitySet Name="vwIzdavanjePasosas" EntityType="Self.vwIzdavanjePasosa" />
+    <EntitySet Name="vwKorisniks" EntityType="Self.vwKorisnik" />
+    <EntitySet Name="vwMaloletnoLice" EntityType="Self.vwMaloletnoLouse" />
+    <EntitySet Name="vwPasos" EntityType="Self.vwPaso" />
+    <EntitySet Name="vwProduzetakPasosas" EntityType="Self.vwProduzetakPasosa" />
+    <EntitySet Name="vwUplatas" EntityType="Self.vwUplata" />
+    <AssociationSet Name="FK_tblGradjanin_tblMaloletnoLice" Association="Self.FK_tblGradjanin_tblMaloletnoLice">
+      <End Role="tblMaloletnoLice" EntitySet="tblMaloletnoLice" />
+      <End Role="tblGradjanin" EntitySet="tblGradjanins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPasos_tblGradjanin" Association="Self.FK_tblPasos_tblGradjanin">
+      <End Role="tblGradjanin" EntitySet="tblGradjanins" />
+      <End Role="tblPasos" EntitySet="tblPasos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblInformacijeOPasosu_tblIzdavanjePasosa" Association="Self.FK_tblInformacijeOPasosu_tblIzdavanjePasosa">
+      <End Role="tblIzdavanjePasosa" EntitySet="tblIzdavanjePasosas" />
+      <End Role="tblInformacijeOPasosu" EntitySet="tblInformacijeOPasosus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblInformacijeOPasosu_tblProduzetakPasosa" Association="Self.FK_tblInformacijeOPasosu_tblProduzetakPasosa">
+      <End Role="tblProduzetakPasosa" EntitySet="tblProduzetakPasosas" />
+      <End Role="tblInformacijeOPasosu" EntitySet="tblInformacijeOPasosus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPasos_tblInformacijeOPasosu" Association="Self.FK_tblPasos_tblInformacijeOPasosu">
+      <End Role="tblInformacijeOPasosu" EntitySet="tblInformacijeOPasosus" />
+      <End Role="tblPasos" EntitySet="tblPasos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPasos_tblIzgubljenPasos" Association="Self.FK_tblPasos_tblIzgubljenPasos">
+      <End Role="tblIzgubljenPasos" EntitySet="tblIzgubljenPasos" />
+      <End Role="tblPasos" EntitySet="tblPasos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblKorisnik_tblPasos" Association="Self.FK_tblKorisnik_tblPasos">
+      <End Role="tblPasos" EntitySet="tblPasos" />
+      <End Role="tblKorisnik" EntitySet="tblKorisniks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPasos_tblMaloletnoLice" Association="Self.FK_tblPasos_tblMaloletnoLice">
+      <End Role="tblMaloletnoLice" EntitySet="tblMaloletnoLice" />
+      <End Role="tblPasos" EntitySet="tblPasos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPasos_tblUplata" Association="Self.FK_tblPasos_tblUplata">
+      <End Role="tblUplata" EntitySet="tblUplatas" />
+      <End Role="tblPasos" EntitySet="tblPasos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,42 @@
+﻿@model MVCLicnaDokumentaPasos.Models.tblKorisnik
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Informacije o korisniku</h2>
+
+<div>
+    <h4>tblKorisnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lozinka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lozinka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblPaso.IzdajePU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblPaso.IzdajePU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.KorsinikID }) |
+    @Html.ActionLink("Lista korisnika", "Index")
+</p>

@@ -1,0 +1,96 @@
+﻿@model MVCLicnaDokumentaPasos.Models.tblPaso
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje pasosa</h2>
+
+<h3>Da li ste sigurni?</h3>
+<div>
+    <h4>tblPaso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IzdajePU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IzdajePU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drzava)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drzava)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblGradjanin.Tip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblGradjanin.Tip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblInformacijeOPasosu.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblInformacijeOPasosu.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblIzgubljenPaso.PrijavaNestanka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblIzgubljenPaso.PrijavaNestanka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblMaloletnoLouse.UverenjeODrzavljanstvu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblMaloletnoLouse.UverenjeODrzavljanstvu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblUplata.ObrzacPutneIsprave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblUplata.ObrzacPutneIsprave)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-default" /> |
+            @Html.ActionLink("Lista pasosa", "Index")
+        </div>
+    }
+</div>

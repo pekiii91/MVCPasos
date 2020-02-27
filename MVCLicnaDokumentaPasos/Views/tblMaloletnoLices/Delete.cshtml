@@ -1,0 +1,64 @@
+﻿@model MVCLicnaDokumentaPasos.Models.tblMaloletnoLouse
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje maloletnog lica</h2>
+
+<h3>Da li ste sigurni?</h3>
+<div>
+    <h4>tblMaloletnoLouse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UverenjeODrzavljanstvu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UverenjeODrzavljanstvu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IzvodMaticneKnjigeRodjenih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IzvodMaticneKnjigeRodjenih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UplaceneNaknade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UplaceneNaknade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaglasnostRoditelja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaglasnostRoditelja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fotografija)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fotografija)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-default" /> |
+            @Html.ActionLink("Lista maloletnih lica", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@model MVCLicnaDokumentaPasos.Models.tblUplata
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje uplata</h2>
+
+<h3>Da li ste sigurni?</h3>
+<div>
+    <h4>tblUplata</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ObrzacPutneIsprave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ObrzacPutneIsprave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrativnaTaksa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrativnaTaksa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-default" /> |
+            @Html.ActionLink("Lista uplata", "Index")
+        </div>
+    }
+</div>

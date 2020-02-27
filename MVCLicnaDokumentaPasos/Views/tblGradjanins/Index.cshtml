@@ -1,0 +1,102 @@
+﻿@model IEnumerable<MVCLicnaDokumentaPasos.Models.tblGradjanin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista gradjanina</h2>
+
+<p>
+    @Html.ActionLink("Kreiranje novog gradjanina", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JMBG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumIzdavanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumRodjenja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MestoRodjenja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrzavaRodjenja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prebivaliste)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KodDrzave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblMaloletnoLouse.UverenjeODrzavljanstvu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prezime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JMBG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumIzdavanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumRodjenja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MestoRodjenja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrzavaRodjenja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prebivaliste)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KodDrzave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblMaloletnoLouse.UverenjeODrzavljanstvu)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.GradjaninID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.GradjaninID }) |
+            @Html.ActionLink("Obrisi", "Delete", new { id=item.GradjaninID })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home3");
+</div>

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MVCLicnaDokumentaPasos.Models.tblPaso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista pasosa</h2>
+
+<p>
+    @Html.ActionLink("Kreiranje novog pasosa", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IzdajePU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Drzava)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblGradjanin.Tip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblInformacijeOPasosu.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblIzgubljenPaso.PrijavaNestanka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblMaloletnoLouse.UverenjeODrzavljanstvu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblUplata.ObrzacPutneIsprave)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IzdajePU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Drzava)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblGradjanin.Tip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblInformacijeOPasosu.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblIzgubljenPaso.PrijavaNestanka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblMaloletnoLouse.UverenjeODrzavljanstvu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblUplata.ObrzacPutneIsprave)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.PasosID }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.PasosID }) |
+            @Html.ActionLink("Obrisi", "Delete", new { id=item.PasosID })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Naslovna strana", "Index", "Home3");
+</div>

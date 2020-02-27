@@ -1,0 +1,48 @@
+﻿@model MVCLicnaDokumentaPasos.Models.tblProduzetakPasosa
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje produzetka pasosa</h2>
+
+<h3>Da li ste sigurni?</h3>
+<div>
+    <h4>tblProduzetakPasosa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LicnaKarta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LicnaKarta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StariPasos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StariPasos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TroskoviUplate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TroskoviUplate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-default" /> |
+            @Html.ActionLink("Lista produzenih pasosa", "Index")
+        </div>
+    }
+</div>
